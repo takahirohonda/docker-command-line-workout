@@ -1,5 +1,5 @@
 <div align="center">
-  <img height="80" src="./img/docker-logo.png">
+  <img height="80" src="./img/docker-logo.jpg">
   <h1>Docker Command Line Workout 💪🏼</h1>
 
 <span>Docker is cool. 
