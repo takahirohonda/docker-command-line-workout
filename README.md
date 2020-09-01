@@ -19,7 +19,7 @@ If you want to make a suggestion or contribute to this, feel free to pull the re
 </span>
 <br />
 <h1>Topics🏷</h1>
-<p><b><a href="#1">(1) Trouble shooting the container</a></b></P>
+<p><b><a href="#1">(1) Interacting with a running container</a></b></P>
 <p><b><a href="#2">(2) Building cotainers</a></b></P>
 <p><b><a href="#3">(3) Docker compose</a></b></P>
 </div>
@@ -27,7 +27,7 @@ If you want to make a suggestion or contribute to this, feel free to pull the re
 
 ---
 <span id="1"></span>
-### (1) TROUBLESHOOTING
+### (1) INTERACTING WITH CONTAINER
 ---
 
 <b>(1) Checking container stats</b>
@@ -54,10 +54,91 @@ docker logs -f <Container Name>
 ```
 </details>
 
+<b>(3) Listing containers</b>
+
+List 
+- all the existing containers
+- all the existing images
+- all the running containers
+
+<details><summary><b>Answer</b></summary>
+
+```bash
+docker container list --all
+
+docker images 
+# or docker image ls
+
+docker ps
+```
+</details>
+
+<b>(4) Getting into Docker's container shell</b>
+
+Get into docker's container shell with interactive mode. Then exit.
+
+<details><summary><b>Answer</b></summary>
+
+```bash
+# -i: Interactive
+# -t: Allocate a pseudo-TTY
+docker exec -it <container-name> bash
+
+# then exit
+exit
+```
+</details>
+
+
 ---
 <span id="2"></span>
 ### (2) BUILDING CONTAINERS
 ---
+
+<b>(1) Build and run from Dockerfile</b>
+
+Build a container with container name called my-app from the Dockerfile below with port mapping of 3000 to 3000. Then, restart the container.
+
+```dockerfile
+FROM node:12-alpine
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "/app/src/index.js"]
+```
+
+<details><summary><b>Answer</b></summary>
+
+```bash
+# Build the image
+docker build -t my-app .
+
+# Start the container with port apping.
+docker run -dp 3000:3000 my-app
+
+# Stop the container
+docker stop my-app
+
+# Start the container
+docker start my-app
+```
+</details>
+
+<b>(2) Stop the container and remove</b>
+
+Stop the exisiting container named my-app and remove it.
+
+<details><summary><b>Answer</b></summary>
+
+```bash
+# -f will stop and remove the container
+docker rm <container-id or name> -f
+
+# Alternatively stop and remove
+docker stop <container-id or name>
+docker rm <container-id or name>
+```
+</details>
 
 ---
 <span id="3"></span>
