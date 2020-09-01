@@ -36,6 +36,7 @@ Check which container is using how much CPU or Memory.
 
 <details><summary><b>Answer</b></summary>
 docker stats displays a live stream of container resource usage statistics
+
 ```bash
 docker stats
 ```
@@ -52,6 +53,7 @@ Stream container log in the terminal.
 docker logs -f <Container Name>
 ```
 </details>
+
 ---
 <span id="2"></span>
 ### (2) BUILDING CONTAINERS
@@ -67,9 +69,11 @@ docker logs -f <Container Name>
 Starting all the existing container created by docker-compose.
 
 <details><summary><b>Answer</b></summary>
+
 ```bash
 docker-compose start
 ```
+
 </details>
 
 <b>(2) Stop all the existing containers</b>
