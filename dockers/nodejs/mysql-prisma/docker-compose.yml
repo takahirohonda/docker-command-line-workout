@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    depends_on:
+      - db # This will create mysql firstdoc
+    container_name: node-mysql-prisma
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:6080
+    volumes: 
+      - ./:/app:delegated
+      - ./node_modules:/app/node_modules
+
+  db:
+    container_name: db-node-mysql-prisma
+    image: mysql:8.0.23
+    environment:
+      # Optional to create a new user and password
+      # Granded superuser permission by default
+      MYSQL_USER: test
+      MYSQL_PASSWORD: Password123
+      # root password is required
+      MYSQL_ROOT_PASSWORD: Password123
+      MYSQL_DATABASE: profile
+    ports:
+      - 3308:6008
