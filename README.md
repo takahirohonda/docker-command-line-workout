@@ -82,7 +82,11 @@ Get into docker's container shell with interactive mode. Then exit.
 ```bash
 # -i: Interactive
 # -t: Allocate a pseudo-TTY
-docker exec -it <container-name> bash
+docker exec -it <container-name> bash # this works most of the time
+
+# some containers need to do it like this
+docker exec -it <container-name>  /bin/sh  # e.g node alpine containers
+docker exec -it <container-name>  /bin/bash
 
 # then exit
 exit
