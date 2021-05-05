@@ -190,3 +190,17 @@ Of course, we can run container in a detached mode. This will keep all the conta
 docker-compose up --build -d
 ```
 </details>
+
+<b>(4) Building one container from a particular docker-compose file</b>
+
+Build only `app` service from `docker-compose.ci.yml`
+
+<details><summary><b>Answer</b></summary>
+
+We can just add the service name as blow. -f is to specify which file. -d is in dettached mode.
+
+```bash
+docker-compose -f docker-compose.ci.yml up app -d
+```
+
+</details>
