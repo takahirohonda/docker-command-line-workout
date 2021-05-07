@@ -1,4 +1,14 @@
 FROM ubuntu:20.04
 RUN apt-get update && apt-get upgrade
-RUN apt-get install php
-RUN apt-get install php-pear php-fpm php-dev php-zip php-curl php-xmlrpc php-gd php-mysql php-mbstring php-xml libapache2-mod-php
+RUN apt-get update \
+    && apt -y install software-properties-common \
+    && add-apt-repository ppa:ondrej/php 
+
+RUN apt-get update \
+    && apt-get install -y curl zip unzip \
+            php7.4 php7.4-fpm \
+            gettext-base sudo
+RUN apt update
+RUN apt install apache2
+RUN ufw allow 'Apache'
+EXPOSE 80
