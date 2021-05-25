@@ -13,7 +13,7 @@ docker-compose up --build -d
 
 ```bash
 # Build the container
-docker build -t mdh ./createImg/Dockerfile
+docker build -t mdhdocker/ubuntu-node:14 ./createImg
 # Login to the docker hub
 docker login
 # Push

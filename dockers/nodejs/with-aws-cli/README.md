@@ -1,4 +1,20 @@
-## Getting started
+
+Using `ubuntu:20.04` (see ubuntu versions: https://hub.docker.com/_/ubuntu/) to create a docker image with nodejs (https://hub.docker.com/repository/docker/mdhdocker/ubuntu-node). Then use it to start an express app.
+
+## 1. Build an image and push to repository
+
+```bash
+# Build the container - need to build with tag name with the tag at the end
+docker build -t mdhdocker/ubuntu-node-awscli:14 ./createImg
+# Login to the docker hub
+docker login
+# Push
+docker push mdhdocker/ubuntu-node-awscli:14
+
+# Update the tag (in the future)
+docker push mdhdocker/ubuntu-node-awscli:<new tagname>
+```
+## 2. Getting started
 
 Just run the command below
 
@@ -14,7 +30,7 @@ docker build -t node-alpine-14 .
 docker run -d --name node-alpine-14 -p 5000:5000
 
 # run as interactive mode
-docker exec -it node10-awscli-test /bin/sh
+docker exec -it node14-awscli-test /bin/sh
 ```
 
 ## Troubleshooting
