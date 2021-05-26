@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  wordpress:
+    image: wordpress
+    ports:
+      - 9999: 80
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: test
+      WORDPRESS_DB_PASSWORD: Password123
+      WORDPRESS_DB_NAME: mywordpress
+  db:
+    image: mysql: 5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: Password123
+      MYSQL_DATABASE: mywordpress
+      MYSQL_USER: test
+      MYSQL_PASSWORD: Password123

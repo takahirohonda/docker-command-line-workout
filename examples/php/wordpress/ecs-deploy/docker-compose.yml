@@ -1,0 +1,30 @@
+version: "3" # ECS only supports yaml version up to 3. Not 3.1, 3.2, etc
+    
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Password123
+      MYSQL_DATABASE: mywordpress
+      MYSQL_USER: test
+      MYSQL_PASSWORD: Password123
+    
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - "8000:80"
+    restart: always
+    links:
+      - db # this is required for wordpress to connect to db 
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: test
+      WORDPRESS_DB_PASSWORD: Password123
+      WORDPRESS_DB_NAME: mywordpress
+volumes:
+  db_data: {}
