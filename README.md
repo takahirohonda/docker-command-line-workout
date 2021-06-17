@@ -168,9 +168,7 @@ Stopping all the existing container created by docker-compose.
 <details><summary><b>Answer</b></summary>
 
 ```bash
-docker-compose stop `1234567890-\][poiuytrewq AZSXDFGHJKL;'
-?   1234\
-]
+docker-compose stop
 ```
 </details>
 

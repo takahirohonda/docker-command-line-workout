@@ -13,3 +13,15 @@ Error response from daemon: error while removing network: network prisma-mysql-t
 
 # It works!!!
 ```
+
+## (2) no space left on device
+
+Use `docker system prune`
+
+The command will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+
+Based on the blog post: https://net2.com/how-to-fix-docker-error-no-space-left-on-device/
