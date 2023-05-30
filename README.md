@@ -4,7 +4,7 @@
 
 <span>Docker is cool.
 
-This is the execise to build your muscle memory for docker commands. Type them in the terminal like a pro. It makes you look good. It makes you feel good. It makes everybody feel good. 🥳
+This is the exercise to build your muscle memory for docker commands. Type them in the terminal like a pro. It makes you look good. It makes you feel good. It makes everybody feel good. 🥳
 
 This is for building docker command muscle memory. If you know these commands by heart, you can be the one who is saving the day when the production is down or helping your colleagues with their docker issues.
 
@@ -20,7 +20,7 @@ If you want to make a suggestion or contribute to this, feel free to pull the re
 <br />
 <h1>Topics🏷</h1>
 <p><b><a href="#1">(1) Interacting with a running container</a></b></P>
-<p><b><a href="#2">(2) Building cotainers</a></b></P>
+<p><b><a href="#2">(2) Building containers</a></b></P>
 <p><b><a href="#3">(3) Docker compose</a></b></P>
 </div>
 <br />
@@ -160,7 +160,7 @@ CMD ["node", "/app/src/index.js"]
 # Build the image
 docker build -t my-app .
 
-# Start the container with port apping.
+# Start the container with port mapped to 3000.
 docker run -dp 3000:3000 my-app
 
 # Stop the container
@@ -174,7 +174,7 @@ docker start my-app
 
 <b>(2) Stop the container and remove</b>
 
-Stop the exisiting container named my-app and remove it.
+Stop the existing container named my-app and remove it.
 
 <details><summary><b>Answer</b></summary>
 
@@ -227,7 +227,7 @@ After updating docker file or docker-compose file, rebuild the containers.
 
 <details><summary><b>Answer</b></summary>
 
-This will update the container and restart the container. It will take up the terminal process. If you do ctrl + c, it will stop all the containers.
+This will update the container and restart the container. It will take up the terminal process. If you do `ctrl` + `c`, it will stop all the containers.
 
 ```bash
 docker-compose up --build
@@ -247,7 +247,7 @@ Build only `app` service from `docker-compose.ci.yml`
 
 <details><summary><b>Answer</b></summary>
 
-We can just add the service name as blow. -f is to specify which file. -d is in dettached mode.
+We can just add the service name as blow. -f is to specify which file. -d is in detached mode.
 
 ```bash
 docker-compose -f docker-compose.ci.yml up app -d
