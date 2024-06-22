@@ -19,9 +19,9 @@ If you want to make a suggestion or contribute to this, feel free to pull the re
 </span>
 <br />
 <h1>Topics🏷</h1>
-<p><b><a href="#1">(1) Interacting with a running container</a></b></P>
-<p><b><a href="#2">(2) Building containers</a></b></P>
-<p><b><a href="#3">(3) Docker compose</a></b></P>
+<p><b><a href="#1">(1) Docker Commands</a></b></P>
+<p><b><a href="#2">(2) Using Dockerfile</a></b></P>
+<p><b><a href="#3">(3) Using docker-compose</a></b></P>
 </div>
 <br />
 
@@ -29,7 +29,7 @@ If you want to make a suggestion or contribute to this, feel free to pull the re
 
 <span id="1"></span>
 
-### (1) INTERACTING WITH CONTAINER
+### (1) Docker Commands
 
 ---
 
@@ -145,7 +145,7 @@ docker run -it --mount type=bind,source="${PWD}",target=/code -p 3000:3000 node 
 
 <span id="2"></span>
 
-### (2) BUILDING CONTAINERS
+### (2) Using Dockerfile
 
 ---
 
@@ -200,7 +200,7 @@ docker rm <container-id or name>
 
 <span id="3"></span>
 
-### (3) DOCKER-COMPOSE
+### (3) Using docker-compose
 
 ---
 
