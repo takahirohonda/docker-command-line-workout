@@ -35,13 +35,25 @@ If you want to make a suggestion or contribute to this, feel free to pull the re
 
 <b>(1) Checking container stats</b>
 
-Check which container is using how much CPU or Memory.
+- (1) Check which container is using how much CPU or Memory.
+- (2) Check the currently installed docker system information.
+- (3) Inspect the container called node.
+- (4) Check how Docker image's layer composition has changed over time and how recently.
+- (5) See processes running on a container.
 
 <details><summary><b>Answer</b></summary>
-docker stats displays a live stream of container resource usage statistics
 
 ```bash
+# (1) It displays a live stream of container resource usage statistics
 docker stats
+# (2)
+docker info
+# (3)
+docker inspect node
+# (4)
+docker history <container name, e.g. node>
+# (5)
+docker top <CONTAINER ID>
 ```
 
 </details>
@@ -92,11 +104,13 @@ docker system prune -a
 
 </details>
 
-<b>(5) Getting into Docker's container shell</b>
+<b>(5) Runs commands in an already-running container.</b>
 
 Get into docker's container shell with interactive mode. Then exit.
 
 <details><summary><b>Answer</b></summary>
+
+`docker exec` will allow you to execute a command against a running container. This is different from `docker run` because `docker run` will start a new container whereas `docker exec` runs the command in an already-running container.
 
 ```bash
 # -i: Interactive
@@ -113,23 +127,16 @@ exit
 
 </details>
 
-<b>(5) Getting into Docker's container shell</b>
+<b>(6) Mounting local file system and mapping port</b>
 
-Get into docker's container shell with interactive mode. Then exit.
+Mounting the current directly to the node container's `/code` directory, map port 3000 to the host and start the container in bash mode.
 
 <details><summary><b>Answer</b></summary>
 
 ```bash
-# -i: Interactive
-# -t: Allocate a pseudo-TTY
-docker exec -it <container-name> bash # this works most of the time
-
-# some containers need to do it like this
-docker exec -it <container-name>  /bin/sh  # e.g node alpine containers
-docker exec -it <container-name>  /bin/bash
-
-# then exit
-exit
+# we can use either volume or mount options.
+docker run -it -v "$(pwd)":/code -p 3000:3000 node bash
+docker run -it --mount type=bind,source="${PWD}",target=/code -p 3000:3000 node bash
 ```
 
 </details>
