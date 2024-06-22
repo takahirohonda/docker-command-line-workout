@@ -133,11 +133,15 @@ Mounting the current directly to the node container's `/code` directory, map por
 
 <details><summary><b>Answer</b></summary>
 
+`-p` (`--publish`) forward a port out of a container to the host computer. `-v` (`--volume`) and Bind mounts (by using`-m` or `--mount`) has limited functionality compared to volumes (`-v` or `--volume`). In this instance, both will do the job.
+
 ```bash
 # we can use either volume or mount options.
 docker run -it -v "$(pwd)":/code -p 3000:3000 node bash
 docker run -it --mount type=bind,source="${PWD}",target=/code -p 3000:3000 node bash
 ```
+
+Read more about [bind mounts](https://docs.docker.com/storage/bind-mounts/) and [volumes](https://docs.docker.com/storage/volumes/).
 
 </details>
 
