@@ -2,14 +2,29 @@ version: "3"
 services:
   web:
     build: .
+    depends_on:
+      - db
     ports:
       - "3000:3000"
     volumes:
       - .:/home/node/code
       - /home/node/code/node_modules
-    links:
-      - db
+    # this is deprecated. Use `networks` instead
+    # links:
+    #   - db
+    networks:
+      - app-network
     environment:
       MONGO_CONNECTION_STRING: mongodb://db:27017
   db:
     image: mongo:3
+    volumes:
+      - db-volumes
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-volume:
+    driver: local
