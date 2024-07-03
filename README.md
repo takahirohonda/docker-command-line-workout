@@ -158,11 +158,11 @@ Read more about [bind mounts](https://docs.docker.com/storage/bind-mounts/) and 
 Build a container with container name called my-app from the Dockerfile below with port mapping of 3000 to 3000. Then, restart the container.
 
 ```dockerfile
-FROM node:12-alpine
+FROM node:20-alpine
 WORKDIR /app
 COPY . .
-RUN yarn install --production
-CMD ["node", "/app/src/index.js"]
+RUN yarn install --production --frozen-lockfile
+CMD ["node", "index.js"]
 ```
 
 <details><summary><b>Answer</b></summary>
@@ -183,7 +183,30 @@ docker start my-app
 
 </details>
 
-<b>(2) Stop the container and remove</b>
+<b>(2) Running node app with node user</b>
+
+The above Dockerfile will run the app as a root user. Node containers have a user called node. Rewrite the file to run the app with the node user.
+
+<details><summary><b>Answer</b></summary>
+
+```dockerfile
+FROM node:20-alpine
+
+# specify the user here
+USER node
+
+# use a node user directory.
+WORKDIR /home/node/code
+
+# change the ownership user -> node, group -> node
+COPY --chown=node:node . .
+
+RUN yarn install --production --frozen-lockfile
+
+CMD ["node", "index.js"]
+```
+
+<b>(3) Stop the container and remove</b>
 
 Stop the existing container named my-app and remove it.
 
