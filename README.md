@@ -127,21 +127,17 @@ exit
 
 </details>
 
-<b>(6) Mounting local file system and mapping port</b>
+<b>(6) Run a react app from a local dist folder with nginx</b>
 
-Mounting the current directly to the node container's `/code` directory, map port 3000 to the host and start the container in bash mode.
+Use `nginx` container and map the local `dist` folder to `/usr/share/nginx/html` and server the react app.
 
 <details><summary><b>Answer</b></summary>
 
-`-p` (`--publish`) forward a port out of a container to the host computer. `-v` (`--volume`) and Bind mounts (by using`-m` or `--mount`) has limited functionality compared to volumes (`-v` or `--volume`). In this instance, both will do the job.
-
 ```bash
-# we can use either volume or mount options.
-docker run -it -v "$(pwd)":/code -p 3000:3000 node bash
-docker run -it --mount type=bind,source="${PWD}",target=/code -p 3000:3000 node bash
+docker run --mount type=bind,source="$(pwd)"/dist,target=/usr/share/nginx/html -p 8080:80 nginx
+# or we could use volume...
+docker run --volume "$(pwd)"/dist:/usr/share/nginx/html -p 8080:80 nginx
 ```
-
-Read more about [bind mounts](https://docs.docker.com/storage/bind-mounts/) and [volumes](https://docs.docker.com/storage/volumes/).
 
 </details>
 
@@ -221,6 +217,32 @@ docker rm <container-id or name> -f
 # Alternatively stop and remove
 docker stop <container-id or name>
 docker rm <container-id or name>
+```
+
+</details>
+
+<b>(4) Avoid installing dependencies</b>
+
+Start a node app with `node:alpine` container by `node index.js`. Make sure that the dependencies are only installed when they are updated.
+
+<details><summary><b>Answer</b></summary>
+
+Docker automatically uses cache when there is no change in the files mentioned in the step. Each step is a layer and it can just use the cached layer when there is no change. Use `--no-cache` option to rebuild everything from scratch.
+
+```Dockerfile
+FROM node:20-alpine
+
+USER node
+
+WORKDIR /home/node/code
+
+COPY --chown=node:node yarn.lock package.json ./
+
+RUN yarn install --production --frozen-lockfile
+
+COPY --chown=node:node . .
+
+CMD ["node", "index.js"]
 ```
 
 </details>

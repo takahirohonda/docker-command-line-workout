@@ -4,6 +4,8 @@
 
 [6 docker-compose best practices for dev and prod](https://prod.releasehub.com/blog/6-docker-compose-best-practices-for-dev-and-prod)
 
+Read more about [bind mounts](https://docs.docker.com/storage/bind-mounts/) and [volumes](https://docs.docker.com/storage/volumes/).
+
 # Node js container
 
 # Docker container for node.js
