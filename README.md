@@ -206,6 +206,8 @@ RUN yarn install --production --frozen-lockfile
 CMD ["node", "index.js"]
 ```
 
+</details>
+
 <b>(3) Stop the container and remove</b>
 
 Stop the existing container named my-app and remove it.
